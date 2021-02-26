@@ -23,7 +23,7 @@ namespace Code_Challenge_Raymund_Sucgang.Steps
             driver.Navigate().GoToUrl("https://www.votervoice.net/AdminSite");
             LoginPage vvLogin = new LoginPage();
             vvLogin.Login();
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
         }
 
         [Given(@"I navigate to the Manage Contacts page")]
@@ -34,6 +34,7 @@ namespace Code_Challenge_Raymund_Sucgang.Steps
         }
 
 
+        [Given(@"I click ""(.*)""")]
         [When(@"I click ""(.*)""")]
         public void WhenIClick(string linkText)
         {
@@ -56,7 +57,7 @@ namespace Code_Challenge_Raymund_Sucgang.Steps
             var state = driver.FindElement(By.XPath("//select[@ng-model='profile.homeAddress.state']"));
             var selectState = new SelectElement(state);
             selectState.SelectByText(dictionary["State"]);
-            Thread.Sleep(5000);
+            Thread.Sleep(1000);
         }
 
         [When(@"I verify that zipcode is ""(.*)""")]
@@ -67,17 +68,56 @@ namespace Code_Challenge_Raymund_Sucgang.Steps
             Thread.Sleep(1000);
         }
 
+
         [When(@"I verify that ""(.*)"" is already set to ""(.*)""")]
         public void WhenIVerifyThatIsAlreadySetTo(string groupList, string defaultList)
         {
             IWebElement groupListOption = driver.FindElement(By.XPath("//select[@ng-model='profile.membership.groupList']/option[text() = '"+ defaultList +"']"));
             string optionSelected = groupListOption.GetAttribute("selected");
             Assert.AreEqual("true", optionSelected);
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
         }
 
+        [When(@"I press ""(.*)""")]
+        public void WhenIPress(string label)
+        {
+            driver.FindElement(By.XPath("//button[text()='" + label + "']")).Click();
+        }
 
+        [Given(@"I see the text ""(.*)""")]
+        [Then(@"I see the text ""(.*)""")]
+        public void ThenISeeTheText(string text)
+        {
+            try
+            {
+                driver.FindElement(By.XPath("//*[text()='" + text + "']"));
+            } catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
 
+        [When(@"I delete user ""(.*)"" from the contacts")]
+        public void WhenIDeleteUserFromTheContacts(string name)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
+            IWebElement userDelete = wait.Until(driver => driver.FindElement(By.XPath("//td[@title='" + name + "']/../td/div/a[@title='Delete']")));
+            userDelete.Click();
+            driver.FindElement(By.XPath("//button/span[text()='OK']")).Click();
+        }
+
+        [Then(@"I do not see the text ""(.*)""")]
+        public void ThenIDoNotSeeTheText(string text)
+        {
+            try
+            {
+                driver.FindElement(By.XPath("//*[text()='" + text + "']"));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
 
     }
 }
