@@ -8,6 +8,8 @@ using TechTalk.SpecFlow;
 
 namespace Code_Challenge_Raymund_Sucgang.Pages
 {
+    // This is the page object for the login page.
+    // Credentials are stored in an external xml file
     public class LoginPage
     {
         readonly IWebDriver driver = ScenarioContext.Current.Get<IWebDriver>(Constants.KEY_DRIVER);

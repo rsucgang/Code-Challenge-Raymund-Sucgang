@@ -44,7 +44,7 @@ namespace Code_Challenge_Raymund_Sucgang.Steps
             Thread.Sleep(1000);
         }
 
-
+        // Step for filling in the contact information
         [When(@"I enter contact details")]
         public void WhenIEnterContactDetails(Table table)
         {
@@ -78,6 +78,7 @@ namespace Code_Challenge_Raymund_Sucgang.Steps
             Thread.Sleep(1000);
         }
 
+        // Generic step for click on a link
         [When(@"I press ""(.*)""")]
         public void WhenIPress(string label)
         {

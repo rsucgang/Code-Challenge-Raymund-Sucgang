@@ -22,7 +22,7 @@ Scenario: Add Contact
 	When I press "Save"
 	Then I see the text "Created contact successfully"
 
-
+@remove_contact
 Scenario: Remove Contact
 	Given I login as admin in VoterVoice
 	And I navigate to the Manage Contacts page
