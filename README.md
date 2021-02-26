@@ -1,6 +1,6 @@
 # Code-Challenge-Raymund-Sucgang
 
-##Prerequisites
+## Prerequisites
 * Download or clone this repository in your local folder
 * You must have Visual Studio 2019
 
