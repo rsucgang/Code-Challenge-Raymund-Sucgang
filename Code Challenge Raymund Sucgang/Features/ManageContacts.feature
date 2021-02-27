@@ -1,6 +1,6 @@
 ﻿Feature: Manage Contacts
 As an association admin user
-I want to create an delete contact on the Manage Contacts page
+I want to create and delete contact on the Manage Contacts page
 
 
 @add_contact
